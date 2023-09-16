@@ -34,7 +34,7 @@
 
 ## Compatibility
 
-This starter is compatible with versions >= 1.8.0 of `@medusajs/medusa`. 
+This starter is compatible with versions >= 1.8.0 of `@medusajs/medusa`.
 
 ## Getting Started
 
@@ -68,3 +68,16 @@ Join our [Discord server](https://discord.com/invite/medusajs) to meet other com
 - [Twitter](https://twitter.com/medusajs)
 - [LinkedIn](https://www.linkedin.com/company/medusajs)
 - [Medusa Blog](https://medusajs.com/blog/)
+
+```
+  "clean": "cross-env ./node_modules/.bin/rimraf dist",
+  "build": "cross-env npm run clean && npm run build:server && npm run build:admin",
+  "build:server": "cross-env npm run clean && tsc -p tsconfig.json",
+  "build:admin": "cross-env medusa-admin build",
+  "watch": "cross-env tsc --watch",
+  "test": "cross-env jest",
+  "seed": "cross-env medusa seed -f ./data/seed.json",
+  "start": "cross-env npm run build && medusa start",
+  "start:custom": "cross-env npm run build && node --preserve-symlinks --trace-warnings index.js",
+  "dev": "doppler run --command='cross-env npm run build:server && medusa develop'"
+```
